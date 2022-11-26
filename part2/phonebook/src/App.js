@@ -5,18 +5,26 @@ function App() {
   const [newName, setNewName] = useState("");
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setNewName(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Submitted");
-    const newPerson = {
-      name: newName,
-    };
-    setPersons(persons.concat(newPerson));
-    setNewName("");
+
+    if (newName) {
+      const newPerson = {
+        name: newName,
+      };
+      const isPerson = persons.some((person) => person.name === newName);
+      if (!isPerson) {
+        setPersons(persons.concat(newPerson));
+        setNewName("");
+      } else {
+        alert(`${newName} already added to phonebook`);
+      }
+    } else {
+      alert("Enter a name first!");
+    }
   };
 
   return (
@@ -31,6 +39,10 @@ function App() {
           <button type="submit">add</button>
         </div>
       </form>
+      <h2>Numbers</h2>
+      {persons.map((person) => (
+        <div key={person.name}>{person.name}</div>
+      ))}
     </div>
   );
 }
