@@ -9,7 +9,7 @@ Note left of s: Redirect to https://studies.cs.helsinki.fi/exampleapp
 s-->>-c: Status 302 Redirect
 c->>+s: GET https://studies.cs.helsinki.fi/exampleapp
 Note right of c: Reloaded the redirected URL
-s-->>-c: the HTML document
+s-->>-c: Status 200 Responded with the HTML document
 
 c->>+s: GET https://studies.cs.helsinki.fi/exampleapp/main.css
 s-->>-c: Status 200 Responded with "main.css" file
